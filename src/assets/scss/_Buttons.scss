@@ -5,8 +5,9 @@ button,
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 44px;
+  min-width: 160px;
   text-transform: uppercase;
+  gap: 8px;
 }
 
 .btn-white {

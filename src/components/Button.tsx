@@ -5,29 +5,33 @@ type Props = {
   hasIcon: boolean;
   bg: string;
   iconSrc?: string;
+  iconLeading?: boolean;
   to?: string;
   end?: boolean;
   onClick?: () => void;
 };
 
 const Button = (props: Props) => {
-  const { textValue, hasIcon, bg, iconSrc, to, end, onClick } = props;
+  const { textValue, hasIcon, iconLeading, bg, iconSrc, to, end, onClick } = props;
 
   const combinedClassName = `btn ${bg}`;
+  const renderIcon = () => hasIcon && iconSrc && <img src={iconSrc} alt="icon" className="icon" />;
 
   if (to) {
     return (
       <NavLink className={combinedClassName} to={to} end={end}>
-        {hasIcon && iconSrc && <img src={iconSrc} alt="icon" />}
+        {iconLeading && renderIcon()}
         {textValue}
+        {!iconLeading && renderIcon()}
       </NavLink>
     );
   }
 
   return (
-    <button className={bg} onClick={onClick}>
-      {hasIcon && iconSrc && <img src={iconSrc} alt="icon" />}
+    <button className={combinedClassName} onClick={onClick}>
+      {iconLeading && renderIcon()}
       {textValue}
+      {!iconLeading && renderIcon()}
     </button>
   );
 };

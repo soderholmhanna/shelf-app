@@ -1,42 +1,42 @@
 import Button from "../components/Button";
+import ArrowUpRight from "../assets/icons/Arrow up-right.svg";
+import ArrowRight from "../assets/icons/Arrow right.svg";
+import ShelfLogoLarge from "../assets/logos/shelf-logo-large.svg";
 
 const HomePage = () => {
   return (
-    <div className="flex w-screen h-screen">
-      <div className="w-1/2 bg-burgundy h-full flex justify-center pl-16 flex-col">
-        <svg
-          width="377"
-          height="155"
-          viewBox="0 0 377 155"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M63.6818 57.9545C63.8333 54.1667 62.7273 51.2424 60.3636 49.1818C58.0303 47.1212 54.5 46.0909 49.7727 46.0909C46.5606 46.0909 43.7727 46.5455 41.4091 47.4545C39.0455 48.3333 37.1515 49.5606 35.7273 51.1364C34.3333 52.6818 33.4697 54.4697 33.1364 56.5C32.803 58.1667 32.9091 59.6212 33.4545 60.8636C34.0303 62.1061 34.9242 63.1818 36.1364 64.0909C37.3788 64.9697 38.8485 65.7424 40.5455 66.4091C42.2424 67.0455 44.0455 67.5909 45.9545 68.0455L53.9545 70.0455C57.8636 70.9545 61.3788 72.1667 64.5 73.6818C67.6515 75.197 70.2879 77.0606 72.4091 79.2727C74.5606 81.4848 76.0758 84.0909 76.9545 87.0909C77.8333 90.0909 77.9545 93.5303 77.3182 97.4091C76.3485 103.106 74.0909 108.045 70.5455 112.227C67 116.379 62.3485 119.606 56.5909 121.909C50.8333 124.182 44.1667 125.318 36.5909 125.318C29.0758 125.318 22.7273 124.167 17.5455 121.864C12.3636 119.561 8.59091 116.152 6.22727 111.636C3.89394 107.091 3.19697 101.47 4.13636 94.7727H23.1818C22.8485 97.8939 23.303 100.5 24.5455 102.591C25.8182 104.652 27.7121 106.212 30.2273 107.273C32.7424 108.303 35.697 108.818 39.0909 108.818C42.4545 108.818 45.4394 108.333 48.0455 107.364C50.6818 106.394 52.8182 105.045 54.4545 103.318C56.0909 101.591 57.0909 99.6061 57.4545 97.3636C57.8182 95.2727 57.5 93.5152 56.5 92.0909C55.5 90.6667 53.8939 89.4545 51.6818 88.4545C49.5 87.4242 46.7879 86.5151 43.5455 85.7273L33.8182 83.1818C26.303 81.2727 20.6212 78.2879 16.7727 74.2273C12.9242 70.1667 11.5455 64.697 12.6364 57.8182C13.6061 52.1818 15.9545 47.2576 19.6818 43.0455C23.4394 38.803 28.1667 35.5151 33.8636 33.1818C39.5909 30.8182 45.8485 29.6364 52.6364 29.6364C59.5455 29.6364 65.3788 30.8333 70.1364 33.2273C74.8939 35.5909 78.3636 38.8939 80.5455 43.1364C82.7273 47.3788 83.3939 52.3182 82.5455 57.9545H63.6818ZM73.3477 124L88.8023 30.9091H108.484L102.12 69.3182H142.075L148.439 30.9091H168.075L152.62 124H132.984L139.348 85.5455H99.3932L93.0295 124H73.3477Z"
-            fill="#FF432A"
-          />
-          <path
-            d="M169.091 124V30.9091H231.818V47.1364H188.773V69.3182H228.591V85.5455H188.773V107.773H232V124H169.091ZM242.346 124V30.9091H262.028V107.773H301.937V124H242.346ZM309.851 124V30.9091H371.487V47.1364H329.533V69.3182H367.396V85.5455H329.533V124H309.851Z"
-            fill="#FF432A"
-          />
-          <path
-            d="M357.045 125.182C354.045 125.182 351.47 124.121 349.318 122C347.197 119.848 346.136 117.273 346.136 114.273C346.136 111.303 347.197 108.758 349.318 106.636C351.47 104.515 354.045 103.455 357.045 103.455C359.955 103.455 362.5 104.515 364.682 106.636C366.864 108.758 367.955 111.303 367.955 114.273C367.955 116.273 367.439 118.106 366.409 119.773C365.409 121.409 364.091 122.727 362.455 123.727C360.818 124.697 359.015 125.182 357.045 125.182Z"
-            fill="#FF432A"
-          />
-        </svg>
-        <div className="w-[354px]">
+    <div className="homepage">
+      <div className="homepage-half bg-burgundy">
+        <div className="homepage-text-wrap">
+          <img src={ShelfLogoLarge} alt="Shelf logo" id="homepage-large-logo" />
           <h3 className="text-white italic">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua |
           </h3>
           <div className="flex gap-4 pt-10">
-            <Button textValue="Sign up" hasIcon={false} bg="bg-white" end to="/signup" />
-            <Button textValue="Sign in" hasIcon={false} bg="bg-white" end to="/signin" />
+            <Button
+              textValue="Sign up"
+              hasIcon={true}
+              iconLeading={false}
+              bg="bg-white"
+              end
+              to="/signup"
+              iconSrc={ArrowUpRight}
+            />
+            <Button
+              textValue="Sign in"
+              hasIcon={true}
+              bg="bg-white"
+              end
+              to="/signin"
+              iconLeading={false}
+              iconSrc={ArrowRight}
+            />
           </div>
         </div>
       </div>
 
-      <div className="w-1/2 bg-white flex items-center justify-center h-full">
+      <div className="homepage-half homepage-image bg-white">
         <svg
           width="339"
           height="430"
@@ -84,6 +84,7 @@ const HomePage = () => {
             stroke="#381519"
             stroke-linecap="round"
           />
+          <circle cx="232.5" cy="365.5" r="39" fill="#ACD0D9" stroke="#381519" />
         </svg>
       </div>
     </div>
