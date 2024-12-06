@@ -10,7 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import React, { PropsWithChildren, createContext, useEffect, useState } from "react";
-import { auth } from "../../services/firebase";
+import { auth } from "../services/firebase";
 
 interface AuthType {
   signup: (email: string, password: string) => Promise<UserCredential>;
