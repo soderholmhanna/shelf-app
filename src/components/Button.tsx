@@ -11,7 +11,7 @@ type Props = {
   onClick?: () => void;
 };
 
-const Button = (props: Props) => {
+const CustomButton = (props: Props) => {
   const { textValue, hasIcon, iconLeading, bg, iconSrc, to, end, onClick } = props;
 
   const combinedClassName = `btn ${bg}`;
@@ -36,4 +36,4 @@ const Button = (props: Props) => {
   );
 };
 
-export default Button;
+export default CustomButton;

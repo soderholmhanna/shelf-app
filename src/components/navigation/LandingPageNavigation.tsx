@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
 import BackButton from "../../assets/icons/back-orange.svg";
 
-const HomePageNavigation = () => {
+const LandingPageNavigation = () => {
   return (
     <nav id="home-nav">
       <NavLink end to={"/"}>
@@ -31,4 +31,4 @@ const HomePageNavigation = () => {
   );
 };
 
-export default HomePageNavigation;
+export default LandingPageNavigation;

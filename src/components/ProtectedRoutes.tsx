@@ -11,7 +11,7 @@ const ProtectedRoutes: React.FC = () => {
     }
   }, [currentUser]);
 
-  return currentUser ? <Outlet /> : <Navigate to="/login" />;
+  return currentUser ? <Outlet /> : <Navigate to="/signin" />;
 };
 
 export default ProtectedRoutes;

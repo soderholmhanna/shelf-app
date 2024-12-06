@@ -1,40 +1,84 @@
-import Button from "../components/Button";
-import ArrowUpRight from "../assets/icons/Arrow up-right.svg";
-import ArrowRight from "../assets/icons/Arrow right.svg";
-import HomePageNavigation from "../components/navigation/HomePageNavigation";
-import ShelfLogoLarge from "../assets/logos/shelf-logo-large.svg";
+// import Button from "../components/Button";
+// import ArrowUpRight from "../assets/icons/Arrow up-right.svg";
+// import ArrowRight from "../assets/icons/Arrow right.svg";
+import LandingPageNavigation from "../components/navigation/LandingPageNavigation";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useState } from "react";
+import { LoginType } from "../types/User.types";
+import { FirebaseError } from "@firebase/util";
+import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router";
 
 const SignInPage = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<LoginType>();
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const onLogin: SubmitHandler<LoginType> = async (data) => {
+    setIsSubmitting(true);
+
+    try {
+      await login(data.email, data.password);
+      navigate("/home");
+    } catch (err) {
+      setIsError(true);
+
+      if (err instanceof FirebaseError) {
+        console.error(err.message);
+      } else if (err instanceof Error) {
+        console.error(err.message);
+      } else {
+        console.error("Something went wrong, try again.");
+      }
+    }
+
+    setIsSubmitting(false);
+  };
+
   return (
     <div className="homepage">
-      <div className="homepage-half bg-burgundy relative">
-        <HomePageNavigation />
+      <div className="homepage-half bg-burgundy">
+        <LandingPageNavigation />
         <div className="homepage-text-wrap">
-          <img src={ShelfLogoLarge} alt="Shelf logo" id="homepage-large-logo" />
-          <h3 className="text-white italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua |
-          </h3>
-          <div className="flex gap-4 pt-10">
-            <Button
-              textValue="Sign up"
-              hasIcon={true}
-              iconLeading={false}
-              bg="bg-white"
-              end
-              to="/signup"
-              iconSrc={ArrowUpRight}
-            />
-            <Button
-              textValue="Sign in"
-              hasIcon={true}
-              bg="bg-white"
-              end
-              to="/signin"
-              iconLeading={false}
-              iconSrc={ArrowRight}
-            />
-          </div>
+          <h2>SIGN IN</h2>
+          <Form onSubmit={handleSubmit(onLogin)}>
+            <Form.Group controlId="email" className="mb-3">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                placeholder="my-email@email.com"
+                type="email"
+                {...register("email", {
+                  required: "Please enter your email.",
+                })}
+              />
+              {errors.email && <p className="invalid">{errors.email.message || "Invalid value"}</p>}
+            </Form.Group>
+
+            <Form.Group controlId="password" className="mb-3">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                autoComplete="new-password"
+                {...register("password", {
+                  required: "Please enter your password",
+                })}
+              />
+              {errors.password && <p>{errors.password.message || "Invalid value"}</p>}
+            </Form.Group>
+
+            <Button disabled={isSubmitting} type="submit" variant="primary">
+              {isSubmitting ? "Logging in..." : "Log in"}
+            </Button>
+          </Form>
         </div>
       </div>
 

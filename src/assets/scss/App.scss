@@ -1,6 +1,14 @@
 @import "TextStyles";
 @import "Buttons";
 
+body {
+  background-color: #f2efe2;
+}
+
+.text-white {
+  color: #f2efe2;
+}
+
 .homepage {
   display: flex;
   height: 100vh;
@@ -20,7 +28,12 @@
   }
 }
 
+.bg-burgundy {
+  background-color: #381519;
+}
+
 .homepage-half {
+  position: relative;
   width: 50%;
   display: flex;
   flex-direction: column;
