@@ -78,6 +78,9 @@ const SignInPage = () => {
             <Button disabled={isSubmitting} type="submit" variant="primary">
               {isSubmitting ? "Logging in..." : "Log in"}
             </Button>
+            {isError && (
+              <p style={{ color: "red" }}>Email or password incorrect, please try again!</p>
+            )}
           </Form>
         </div>
       </div>

@@ -6,6 +6,7 @@ import SignInPage from "./pages/SignInPage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import LogoutPage from "./pages/LogoutPage";
 
 const App = () => {
   return (
@@ -20,8 +21,8 @@ const App = () => {
           {/* <Route path="/profile" element={<UpdateProfilePage />} />
           <Route path="/update-profile" element={<UpdateProfilePage />} />
 
-          <Route path="/my-books" element={<MyBooksPage />} />
-          <Route path="/logout" element={<LogoutPage />} /> */}
+          <Route path="/my-books" element={<MyBooksPage />} /> */}
+          <Route path="/logout" element={<LogoutPage />} />
         </Route>
 
         <Route path="/*" element={<NotFoundPage />} />

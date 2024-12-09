@@ -1,9 +1,12 @@
-import CustomButton from "../components/Button";
+import CustomButton from "../components/CustomButton";
 import ArrowUpRight from "../assets/icons/Arrow up-right.svg";
 import ArrowRight from "../assets/icons/Arrow right.svg";
 import ShelfLogoLarge from "../assets/logos/shelf-logo-large.svg";
+import useAuth from "../hooks/useAuth";
 
 const LandingPage = () => {
+  const { currentUser } = useAuth();
+
   return (
     <div className="homepage">
       <div className="homepage-half bg-burgundy">
@@ -13,26 +16,41 @@ const LandingPage = () => {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua |
           </h3>
-          <div className="flex gap-4 pt-10">
-            <CustomButton
-              textValue="Sign up"
-              hasIcon={true}
-              iconLeading={false}
-              bg="bg-white"
-              end
-              to="/signup"
-              iconSrc={ArrowUpRight}
-            />
-            <CustomButton
-              textValue="Sign in"
-              hasIcon={true}
-              bg="bg-white"
-              end
-              to="/signin"
-              iconLeading={false}
-              iconSrc={ArrowRight}
-            />
-          </div>
+          {!currentUser ? (
+            <div className="flex gap-4 pt-10">
+              <CustomButton
+                textValue="Sign up"
+                hasIcon={true}
+                iconLeading={false}
+                bg="btn-white"
+                end
+                to="/signup"
+                iconSrc={ArrowUpRight}
+              />
+              <CustomButton
+                textValue="Sign in"
+                hasIcon={true}
+                bg="btn-white"
+                end
+                to="/signin"
+                iconLeading={false}
+                iconSrc={ArrowRight}
+              />
+            </div>
+          ) : (
+            <div>
+              <h3>You're already logged in!</h3>
+              <CustomButton
+                textValue="Home page"
+                hasIcon={true}
+                iconLeading={false}
+                bg="btn-white"
+                end
+                to="/home"
+                iconSrc={ArrowUpRight}
+              />
+            </div>
+          )}
         </div>
       </div>
 
