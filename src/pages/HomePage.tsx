@@ -1,18 +1,9 @@
-import CustomButton from "../components/CustomButton";
-import ArrowRight from "../assets/icons/Arrow right.svg";
+import Navigation from "../components/navigation/Navigation";
 
 const HomePage = () => {
   return (
     <div>
-      <CustomButton
-        textValue="Log out"
-        hasIcon={true}
-        iconLeading={false}
-        bg="btn-white"
-        end
-        to="/logout"
-        iconSrc={ArrowRight}
-      />
+      <Navigation />
     </div>
   );
 };

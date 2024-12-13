@@ -1,0 +1,30 @@
+#nav {
+  border-right: 1px solid #381519;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 33%;
+  max-width: 400px;
+  height: 100vh;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: flex;
+  position: fixed;
+}
+
+.nav-links {
+  border-top: 1px solid #381519;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.nav-link {
+  border-bottom: 1px solid #381519;
+  color: #381519;
+  text-transform: uppercase;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  text-decoration: none;
+  display: flex;
+}
