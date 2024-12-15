@@ -1,0 +1,45 @@
+.bookshelf-preview {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: #f9f7f1;
+  width: 100%;
+  max-width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 25px;
+  display: flex;
+  overflow: scroll;
+}
+
+.shelf-title {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 155px;
+  min-width: 155px;
+  margin-right: 30px;
+  display: flex;
+}
+
+.bookshelf-book-preview {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: #f2efe2;
+  flex: none;
+  width: 416px;
+  padding: 16px;
+  display: flex;
+}
+
+.book-thumbnail-wrap-sm {
+  flex: none;
+  width: 120px;
+  height: 165px;
+}
+
+.book-preview-content {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}

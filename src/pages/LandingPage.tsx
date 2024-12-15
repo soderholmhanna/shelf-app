@@ -22,16 +22,14 @@ const LandingPage = () => {
                 textValue="Sign up"
                 hasIcon={true}
                 iconLeading={false}
-                bg="btn-white"
-                end
+                classes="btn-white"
                 to="/signup"
                 iconSrc={ArrowUpRight}
               />
               <CustomButton
                 textValue="Sign in"
                 hasIcon={true}
-                bg="btn-white"
-                end
+                classes="btn-white"
                 to="/signin"
                 iconLeading={false}
                 iconSrc={ArrowRight}
@@ -44,8 +42,7 @@ const LandingPage = () => {
                 textValue="Home page"
                 hasIcon={true}
                 iconLeading={false}
-                bg="btn-white"
-                end
+                classes="btn-white"
                 to="/home"
                 iconSrc={ArrowUpRight}
               />

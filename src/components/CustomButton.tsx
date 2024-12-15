@@ -1,29 +1,28 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type Props = {
   textValue: string;
   hasIcon: boolean;
-  bg: string;
+  classes: string;
   iconSrc?: string;
   iconLeading?: boolean;
   to?: string;
-  end?: boolean;
   onClick?: () => void;
 };
 
 const CustomButton = (props: Props) => {
-  const { textValue, hasIcon, iconLeading, bg, iconSrc, to, end, onClick } = props;
+  const { textValue, hasIcon, iconLeading, classes, iconSrc, to, onClick } = props;
 
-  const combinedClassName = `btn ${bg}`;
+  const combinedClassName = `btn ${classes}`;
   const renderIcon = () => hasIcon && iconSrc && <img src={iconSrc} alt="icon" className="icon" />;
 
   if (to) {
     return (
-      <NavLink className={combinedClassName} to={to} end={end}>
+      <Link className={combinedClassName} to={to}>
         {iconLeading && renderIcon()}
         {textValue}
         {!iconLeading && renderIcon()}
-      </NavLink>
+      </Link>
     );
   }
 

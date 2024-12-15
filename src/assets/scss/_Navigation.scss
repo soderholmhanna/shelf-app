@@ -3,13 +3,15 @@
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 33%;
-  max-width: 400px;
+  width: 40vh;
+  min-width: 40vh;
   height: 100vh;
   padding-left: 40px;
   padding-right: 40px;
   display: flex;
-  position: fixed;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 
 .nav-links {
@@ -27,4 +29,8 @@
   padding: 10px 0;
   text-decoration: none;
   display: flex;
+}
+
+.nav-links > a.active {
+  color: #ff432a;
 }
