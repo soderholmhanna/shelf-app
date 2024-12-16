@@ -1,6 +1,5 @@
-// type Props = {};
-
 import CustomButton from "./CustomButton";
+import ArrowRight from "../assets/icons/Arrow right.svg";
 
 const BookshelfPreview = () => {
   return (
@@ -11,6 +10,7 @@ const BookshelfPreview = () => {
           textValue="Open shelf"
           classes="btn-simple"
           hasIcon={true}
+          iconSrc={ArrowRight}
           iconLeading={false}
           to="/currently-reading"
         />

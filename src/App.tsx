@@ -7,6 +7,8 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LogoutPage from "./pages/LogoutPage";
+import ProfilePage from "./pages/ProfilePage";
+import UpdateProfilePage from "./pages/UpdateProfilePage";
 
 const App = () => {
   return (
@@ -18,10 +20,10 @@ const App = () => {
 
         <Route element={<ProtectedRoutes />}>
           <Route path="/home" element={<HomePage />} />
-          {/* <Route path="/profile" element={<UpdateProfilePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/update-profile" element={<UpdateProfilePage />} />
 
-          <Route path="/my-books" element={<MyBooksPage />} /> */}
+          {/* <Route path="/my-books" element={<MyBooksPage />} /> */}
           <Route path="/logout" element={<LogoutPage />} />
         </Route>
 

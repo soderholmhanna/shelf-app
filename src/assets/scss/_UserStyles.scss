@@ -1,3 +1,5 @@
+// USER HOME PAGE
+
 .user-welcome {
   grid-column-gap: 40px;
   grid-row-gap: 40px;
@@ -13,4 +15,44 @@
   width: 116px;
   height: 116px;
   overflow: hidden;
+}
+
+// USER PROFILE PAGE
+
+.user-profile-card {
+  grid-column-gap: 35px;
+  grid-row-gap: 35px;
+  background-color: #f9f7f1;
+  padding: 20px 25px 30px;
+  display: flex;
+  position: relative;
+}
+
+.user-profile-img-wrap {
+  border-radius: 50%;
+  flex: none;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+
+.user-profile-information {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-flow: column;
+  max-width: 440px;
+  margin-top: 16px;
+  display: flex;
+}
+
+.user-details {
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  display: flex;
+}
+
+.edit-profile-button {
+  position: absolute;
+  top: 20px;
+  right: 25px;
 }

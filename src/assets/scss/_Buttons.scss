@@ -13,3 +13,27 @@ button,
 .btn-white {
   background: #f2efe2;
 }
+
+.inline-buttons {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  flex-flow: wrap;
+  display: flex;
+}
+
+.btn-green {
+  border: 1px solid #797d45;
+  color: #797d45;
+  min-width: 120px;
+}
+
+.btn-simple {
+  height: auto;
+  padding-left: 0;
+  padding-right: 0;
+  min-width: 0;
+}
+
+.btn-outline {
+  border: 1px solid #381519;
+}
