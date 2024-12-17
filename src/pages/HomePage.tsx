@@ -5,14 +5,12 @@ import useAuth from "../hooks/useAuth";
 import useGetUserDoc from "../hooks/useGetUserDoc";
 
 const HomePage = () => {
-  const { currentUser, userName } = useAuth();
+  const { currentUser } = useAuth();
   const { data: userData } = useGetUserDoc(currentUser?.uid);
 
   if (!currentUser) {
     return <div>Loading...</div>;
   }
-
-  console.log(currentUser, userName);
 
   return (
     <main>

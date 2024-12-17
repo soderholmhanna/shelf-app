@@ -23,3 +23,13 @@ export const get = async <T>(endpoint: string) => {
 export const getBook = (volumeId: string) => {
     return get<Book>(`${volumeId}/`);
 };
+
+export const getBooks = async (ids: string[]) => {
+    const promises = ids.map((id) => {
+        return getBook(id)
+    });
+
+    const values = await Promise.all(promises)
+    console.log(values)
+    return values;
+}
