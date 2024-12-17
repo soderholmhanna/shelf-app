@@ -8,6 +8,7 @@ import ArrowLeft from "../assets/icons/arrow-left-green.svg";
 
 const ProfilePage = () => {
   const { currentUser } = useAuth();
+
   const navigate = useNavigate();
 
   const { data: userData } = useGetUserDoc(currentUser?.uid);

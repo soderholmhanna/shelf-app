@@ -21,7 +21,7 @@ const App = () => {
         <Route element={<ProtectedRoutes />}>
           <Route path="/home" element={<HomePage />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/update-profile" element={<UpdateProfilePage />} />
+          <Route path="/profile/update-profile" element={<UpdateProfilePage />} />
 
           {/* <Route path="/my-books" element={<MyBooksPage />} /> */}
           <Route path="/logout" element={<LogoutPage />} />

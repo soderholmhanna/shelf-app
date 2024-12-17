@@ -41,7 +41,7 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user }) => {
             AGE <span className="text-burgundy-50">28</span>
           </p>
           <p className="overline">
-            Location <span className="text-burgundy-50">Sweden</span>
+            Location <span className="text-burgundy-50">{profile.location}</span>
           </p>
         </div>
       </div>
@@ -51,7 +51,7 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user }) => {
         hasIcon={true}
         iconSrc={EditIcon}
         iconLeading={false}
-        to="/update-profile"
+        to="/profile/update-profile"
       />
     </div>
   );
