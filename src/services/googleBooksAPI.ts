@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Book } from "../components/BookshelfPreview";
+import { Book } from "../types/Book.types";
 
 
 const instance = axios.create({
@@ -25,11 +25,13 @@ export const getBook = (volumeId: string) => {
 };
 
 export const getBooks = async (ids: string[]) => {
+    if (!ids || ids.length === 0) {
+        return [];
+    }
     const promises = ids.map((id) => {
         return getBook(id)
     });
 
     const values = await Promise.all(promises)
-    console.log(values)
     return values;
 }

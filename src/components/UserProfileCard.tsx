@@ -7,10 +7,20 @@ import calculateAge from "../assets/helpers/calculateAge";
 
 interface UserProfileCardProps {
   user: User[];
+  currentUserId: string;
+  uid: string;
 }
 
-const UserProfileCard: React.FC<UserProfileCardProps> = ({ user }) => {
+const UserProfileCard: React.FC<UserProfileCardProps> = ({ user, uid, currentUserId }) => {
   const profile = user[0];
+
+  const isMyProfile = (authId: string, paramId: string) => {
+    if (authId === paramId) {
+      return true;
+    }
+  };
+
+  const test = isMyProfile(uid, currentUserId);
 
   const dateJoined = formatTimestamp(profile.dateJoined);
   const age = profile.dob ? calculateAge(profile.dob) : "";
@@ -48,14 +58,16 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user }) => {
           </p>
         </div>
       </div>
-      <CustomButton
-        textValue="Edit profile"
-        classes="btn-simple edit-profile-button"
-        hasIcon={true}
-        iconSrc={EditIcon}
-        iconLeading={false}
-        to="/profile/update-profile"
-      />
+      {test && (
+        <CustomButton
+          textValue="Edit profile"
+          classes="btn-simple edit-profile-button"
+          hasIcon={true}
+          iconSrc={EditIcon}
+          iconLeading={false}
+          to="/profile/update-profile"
+        />
+      )}
     </div>
   );
 };

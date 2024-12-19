@@ -28,7 +28,7 @@ const Navigation = () => {
           <div>Profile</div>
           <img src={ArrowRight} alt="Arrow right" />
         </NavLink>
-        <NavLink end to={"/shelves"} className="nav-link">
+        <NavLink end to={`/shelves/${userId}`} className="nav-link">
           <div>My books</div>
           <img src={ArrowRight} loading="lazy" alt="Arrow right" />
         </NavLink>

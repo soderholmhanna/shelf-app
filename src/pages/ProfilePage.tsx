@@ -36,7 +36,9 @@ const ProfilePage = () => {
               onClick={() => navigate(-1)}
             />
           </div>
-          {currentUser && userData && <UserProfileCard user={userData} />}
+          {currentUser && userData && uid && (
+            <UserProfileCard user={userData} uid={uid} currentUserId={currentUser.uid} />
+          )}
         </div>
       </div>
     </main>

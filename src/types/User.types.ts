@@ -33,14 +33,19 @@ export type UpdateProfileType = {
 
 export type User = {
     _id: string;
+    email: string;
+    dateJoined: Timestamp;
     firstName?: string;
     lastName?: string;
     bio?: string;
     dob?: string;
     location?: string;
-    dateJoined: Timestamp;
     photoUrls?: string;
-    email: string;
+    books: {
+        currentlyReading: string[] | [];
+        wantToRead: string[] | [];
+        read: string[] | [];
+    }
 };
 
 export type NewUser = Omit<User, "_id">;

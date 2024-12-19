@@ -25,7 +25,7 @@ const App = () => {
           <Route path="/profile/:uid" element={<ProfilePage />} />
           <Route path="/profile/update-profile" element={<UpdateProfilePage />} />
 
-          <Route path="/shelves" element={<ShelvesPage />} />
+          <Route path="/shelves/:uid" element={<ShelvesPage />} />
           <Route path="/currently-reading/:uid" element={<CurrentlyReadingShelfPage />} />
           <Route path="/logout" element={<LogoutPage />} />
         </Route>
