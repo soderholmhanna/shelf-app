@@ -8,6 +8,7 @@ button,
   min-width: 160px;
   text-transform: uppercase;
   gap: 8px;
+  padding: 0 16px;
 }
 
 .btn-white {
@@ -36,4 +37,28 @@ button,
 
 .btn-outline {
   border: 1px solid #381519;
+}
+
+// Button containers
+
+.navigation-buttons {
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.shelf-buttons-container {
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.shelf-buttons {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  flex-flow: wrap;
+  display: flex;
 }

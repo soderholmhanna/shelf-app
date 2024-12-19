@@ -2,6 +2,7 @@ import CustomButton from "./CustomButton";
 import ArrowRight from "../assets/icons/Arrow right.svg";
 import { useEffect, useState } from "react";
 import { getBooks } from "../services/googleBooksAPI";
+import useAuth from "../hooks/useAuth";
 
 export interface Book {
   id: string;
@@ -19,6 +20,9 @@ export interface Book {
 
 const BookshelfPreview: React.FC = () => {
   const [books, setBooks] = useState<Book[] | []>([]);
+  const { currentUser } = useAuth();
+
+  const userId = currentUser?.uid;
 
   useEffect(() => {
     const get = async () => {
@@ -38,7 +42,7 @@ const BookshelfPreview: React.FC = () => {
           hasIcon={true}
           iconSrc={ArrowRight}
           iconLeading={false}
-          to="/currently-reading"
+          to={`/currently-reading/${userId}`}
         />
       </div>
       {books.map((book) => {

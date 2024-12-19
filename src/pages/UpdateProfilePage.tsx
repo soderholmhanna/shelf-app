@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -48,16 +48,21 @@ const UpdateProfilePage = () => {
     register,
     watch,
     formState: { errors },
-  } = useForm<UpdateProfileType>({
-    defaultValues: {
-      firstName: userName ?? "",
-      lastName: profile?.lastName ?? "",
-      email: userEmail ?? "",
-      dob: profile?.dob ?? "",
-      bio: profile?.bio ?? "",
-      location: profile?.location ?? "",
-    },
-  });
+    reset,
+  } = useForm<UpdateProfileType>();
+
+  useEffect(() => {
+    if (userName || profile) {
+      reset({
+        firstName: profile?.firstName ?? "",
+        lastName: profile?.lastName ?? "",
+        email: userEmail ?? "",
+        dob: profile?.dob ?? "",
+        bio: profile?.bio ?? "",
+        location: profile?.location ?? "",
+      });
+    }
+  }, [userName, profile, userEmail, reset]);
 
   const passwordRef = useRef("");
   passwordRef.current = watch("password");
@@ -102,6 +107,22 @@ const UpdateProfilePage = () => {
           await setDisplayName(data.firstName);
           await updateDoc(userDocRef, { firstName: data.firstName });
         }
+
+        if (data.lastName !== (profile?.lastName ?? "")) {
+          await updateDoc(userDocRef, { lastName: data.lastName });
+        }
+
+        if (data.dob !== (profile?.dob ?? "")) {
+          await updateDoc(userDocRef, { dob: data.dob });
+        }
+
+        if (data.bio !== (profile?.bio ?? "")) {
+          await updateDoc(userDocRef, { bio: data.bio });
+        }
+
+        if (data.location !== (profile?.location ?? "")) {
+          await updateDoc(userDocRef, { location: data.location });
+        }
       }
 
       if (data.email !== (userEmail ?? "")) {
@@ -145,7 +166,7 @@ const UpdateProfilePage = () => {
               <Col md={{ span: 6, offset: 3 }}>
                 <Card className="mb-3">
                   <Card.Body>
-                    <Card.Title className="mb-3">Update profile</Card.Title>
+                    <h1>Update profile</h1>
 
                     <div className="text-center">
                       <div className="d-flex justify-content-center mb-3">
@@ -229,7 +250,7 @@ const UpdateProfilePage = () => {
                         <Form.Label>Bio</Form.Label>
                         <Form.Control
                           placeholder="Write something about yourself!"
-                          type="text"
+                          as="textarea"
                           {...register("bio")}
                         />
                         {errors.bio && (

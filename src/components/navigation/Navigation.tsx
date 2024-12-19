@@ -2,8 +2,13 @@ import { NavLink } from "react-router";
 import ArrowRight from "../../assets/icons/Arrow right.svg";
 import Logo from "../../assets/logos/shelf-logo-burgundy.svg";
 import Books from "../../assets/images/books-illustration.svg";
+import useAuth from "../../hooks/useAuth";
 
 const Navigation = () => {
+  const { currentUser } = useAuth();
+
+  const userId = currentUser?.uid;
+
   return (
     <nav id="nav">
       <a href="#">
@@ -19,11 +24,11 @@ const Navigation = () => {
           <div>Search</div>
           <img src={ArrowRight} loading="lazy" alt="Arrow right" />
         </NavLink>
-        <NavLink end to={"/profile"} className="nav-link">
+        <NavLink end to={`/profile/${userId}`} className="nav-link">
           <div>Profile</div>
           <img src={ArrowRight} alt="Arrow right" />
         </NavLink>
-        <NavLink end to={"/my-books"} className="nav-link">
+        <NavLink end to={"/shelves"} className="nav-link">
           <div>My books</div>
           <img src={ArrowRight} loading="lazy" alt="Arrow right" />
         </NavLink>

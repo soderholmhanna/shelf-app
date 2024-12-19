@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import CustomButton from "../components/CustomButton";
 import Navigation from "../components/navigation/Navigation";
 import UserProfileCard from "../components/UserProfileCard";
@@ -8,14 +8,14 @@ import ArrowLeft from "../assets/icons/arrow-left-green.svg";
 
 const ProfilePage = () => {
   const { currentUser } = useAuth();
+  const { uid } = useParams();
 
+  // compare uid and currentuser id to check if nav "Profile" should be active
+
+  console.log(uid);
   const navigate = useNavigate();
 
-  const { data: userData } = useGetUserDoc(currentUser?.uid);
-  const userId = userData && userData.length > 0 ? userData[0]._id : null;
-
-  console.log({ userData });
-  console.log({ userId });
+  const { data: userData } = useGetUserDoc(uid);
 
   if (!currentUser) {
     return <div>Loading...</div>;
@@ -36,7 +36,7 @@ const ProfilePage = () => {
               onClick={() => navigate(-1)}
             />
           </div>
-          {userData && <UserProfileCard user={userData} />}
+          {currentUser && userData && <UserProfileCard user={userData} />}
         </div>
       </div>
     </main>

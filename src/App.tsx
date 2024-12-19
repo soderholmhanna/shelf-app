@@ -9,6 +9,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import LogoutPage from "./pages/LogoutPage";
 import ProfilePage from "./pages/ProfilePage";
 import UpdateProfilePage from "./pages/UpdateProfilePage";
+import ShelvesPage from "./pages/ShelvesPage";
+import CurrentlyReadingShelfPage from "./pages/CurrentlyReadingShelfPage";
 
 const App = () => {
   return (
@@ -20,10 +22,11 @@ const App = () => {
 
         <Route element={<ProtectedRoutes />}>
           <Route path="/home" element={<HomePage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/:uid" element={<ProfilePage />} />
           <Route path="/profile/update-profile" element={<UpdateProfilePage />} />
 
-          {/* <Route path="/my-books" element={<MyBooksPage />} /> */}
+          <Route path="/shelves" element={<ShelvesPage />} />
+          <Route path="/currently-reading/:uid" element={<CurrentlyReadingShelfPage />} />
           <Route path="/logout" element={<LogoutPage />} />
         </Route>
 
