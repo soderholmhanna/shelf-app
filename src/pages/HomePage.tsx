@@ -6,6 +6,7 @@ import useAuth from "../hooks/useAuth";
 import useGetUserDoc from "../hooks/useGetUserDoc";
 import { getBooks } from "../services/googleBooksAPI";
 import { Book } from "../types/Book.types";
+import ShelfButtons from "../components/ShelfButtons";
 
 const HomePage = () => {
   const { currentUser } = useAuth();
@@ -46,6 +47,10 @@ const HomePage = () => {
                 books={currentlyReading}
                 userId={currentUser.uid}
               />
+              <div className="shelf-buttons-container">
+                <p className="overline">Other shelves:</p>
+                <ShelfButtons wantToRead read uid={currentUser.uid} />
+              </div>
             </>
           )}
         </div>

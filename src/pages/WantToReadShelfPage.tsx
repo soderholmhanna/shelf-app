@@ -2,18 +2,17 @@ import ArrowLeft from "../assets/icons/arrow-left-green.svg";
 import { useNavigate } from "react-router";
 import CustomButton from "../components/CustomButton";
 import Navigation from "../components/navigation/Navigation";
-import BookshelfPreview from "../components/BookshelfPreview";
+import SingleShelf from "../components/SingleShelf";
 import { useEffect, useState } from "react";
 import { Book } from "../types/Book.types";
 import useAuth from "../hooks/useAuth";
 import useGetUserDoc from "../hooks/useGetUserDoc";
 import { getBooks } from "../services/googleBooksAPI";
+import ShelfButtons from "../components/ShelfButtons";
 
-const ShelvesPage = () => {
+const WantToReadShelfPage = () => {
   const navigate = useNavigate();
-  const [currentlyReading, setCurrentlyReading] = useState<Book[] | []>([]);
   const [wantToRead, setWantToRead] = useState<Book[] | []>([]);
-  const [read, setRead] = useState<Book[] | []>([]);
   const { currentUser } = useAuth();
   const { data: userData } = useGetUserDoc(currentUser?.uid);
 
@@ -27,20 +26,14 @@ const ShelvesPage = () => {
   useEffect(() => {
     if (profileBooks) {
       const fetchBooks = async () => {
-        const currentlyReadingBooks = await getShelf(profileBooks.currentlyReading);
         const wantToReadBooks = await getShelf(profileBooks.wantToRead);
-        const readBooks = await getShelf(profileBooks.read);
 
-        setCurrentlyReading(currentlyReadingBooks);
         setWantToRead(wantToReadBooks);
-        setRead(readBooks);
       };
 
       fetchBooks();
     }
   }, [profileBooks]);
-
-  console.log({ profileBooks });
 
   return (
     <main>
@@ -56,22 +49,18 @@ const ShelvesPage = () => {
               textValue="Back"
               onClick={() => navigate(-1)}
             />
+            {currentUser && (
+              <div className="shelf-buttons-container">
+                <p className="overline">Other shelves:</p>
+                <ShelfButtons currentlyReading read uid={currentUser.uid} />
+              </div>
+            )}
           </div>
-          {currentUser && profileBooks && (
-            <>
-              <BookshelfPreview
-                type="Currently reading"
-                books={currentlyReading}
-                userId={currentUser.uid}
-              />
-              <BookshelfPreview type="Want to read" books={wantToRead} userId={currentUser.uid} />
-              <BookshelfPreview type="Read" books={read} userId={currentUser.uid} />
-            </>
-          )}
+          <SingleShelf type="Want to read" books={wantToRead} />
         </div>
       </div>
     </main>
   );
 };
 
-export default ShelvesPage;
+export default WantToReadShelfPage;

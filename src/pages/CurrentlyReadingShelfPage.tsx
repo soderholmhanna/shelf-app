@@ -8,6 +8,7 @@ import { Book } from "../types/Book.types";
 import useAuth from "../hooks/useAuth";
 import useGetUserDoc from "../hooks/useGetUserDoc";
 import { getBooks } from "../services/googleBooksAPI";
+import ShelfButtons from "../components/ShelfButtons";
 
 const CurrentlyReadingShelfPage = () => {
   const navigate = useNavigate();
@@ -48,19 +49,13 @@ const CurrentlyReadingShelfPage = () => {
               textValue="Back"
               onClick={() => navigate(-1)}
             />
-            <div className="shelf-buttons-container">
-              <p className="overline">Other shelves:</p>
-              <div className="shelf-buttons">
-                <a href="#" className="btn btn-green w-inline-block">
-                  <p className="overline">Want to read (43)</p>
-                </a>
-                <a href="#" className="btn btn-green w-inline-block">
-                  <p className="overline">Read (34)</p>
-                </a>
+            {currentUser && (
+              <div className="shelf-buttons-container">
+                <p className="overline">Other shelves:</p>
+                <ShelfButtons wantToRead read uid={currentUser.uid} />
               </div>
-            </div>
+            )}
           </div>
-
           <SingleShelf type="Currently reading" books={currentlyReading} />
         </div>
       </div>
