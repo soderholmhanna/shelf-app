@@ -11,6 +11,9 @@ import ProfilePage from "./pages/ProfilePage";
 import UpdateProfilePage from "./pages/UpdateProfilePage";
 import ShelvesPage from "./pages/ShelvesPage";
 import CurrentlyReadingShelfPage from "./pages/CurrentlyReadingShelfPage";
+import BookPage from "./pages/BookPage";
+import WantToReadShelfPage from "./pages/WantToReadShelfPage";
+import ReadShelfPage from "./pages/ReadShelfPage";
 
 const App = () => {
   return (
@@ -27,6 +30,10 @@ const App = () => {
 
           <Route path="/shelves/:uid" element={<ShelvesPage />} />
           <Route path="/currently-reading/:uid" element={<CurrentlyReadingShelfPage />} />
+          <Route path="/want-to-read/:uid" element={<WantToReadShelfPage />} />
+          <Route path="/read/:uid" element={<ReadShelfPage />} />
+
+          <Route path="/book/:bookId" element={<BookPage />} />
           <Route path="/logout" element={<LogoutPage />} />
         </Route>
 

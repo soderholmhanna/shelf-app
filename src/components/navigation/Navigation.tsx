@@ -11,9 +11,9 @@ const Navigation = () => {
 
   return (
     <nav id="nav">
-      <a href="#">
+      <NavLink end to="/home">
         <img src={Logo} loading="lazy" alt="" />
-      </a>
+      </NavLink>
       <img src={Books} loading="lazy" alt="" />
       <div className="nav-links">
         <NavLink end to={"/home"} className="nav-link">
