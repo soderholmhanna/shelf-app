@@ -28,6 +28,10 @@ button,
   min-width: 120px;
 }
 
+.btn.btn-burgundy {
+  border: 1px solid #381519;
+}
+
 .btn-simple {
   height: auto;
   padding-left: 0;
@@ -61,4 +65,8 @@ button,
   grid-row-gap: 16px;
   flex-flow: wrap;
   display: flex;
+}
+
+select {
+  background-color: transparent;
 }

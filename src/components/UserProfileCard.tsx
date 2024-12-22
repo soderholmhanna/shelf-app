@@ -6,14 +6,12 @@ import ProfilePicPlaceholder from "../assets/images/profilepic-placeholder.jpg";
 import calculateAge from "../assets/helpers/calculateAge";
 
 interface UserProfileCardProps {
-  user: User[];
+  user: User;
   currentUserId: string;
   uid: string;
 }
 
 const UserProfileCard: React.FC<UserProfileCardProps> = ({ user, uid, currentUserId }) => {
-  const profile = user[0];
-
   const isMyProfile = (authId: string, paramId: string) => {
     if (authId === paramId) {
       return true;
@@ -22,30 +20,31 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user, uid, currentUse
 
   const test = isMyProfile(uid, currentUserId);
 
-  const dateJoined = formatTimestamp(profile.dateJoined);
-  const age = profile.dob ? calculateAge(profile.dob) : "";
+  const dateJoined = formatTimestamp(user.dateJoined);
+  const age = user.dob ? calculateAge(user.dob) : "";
 
   return (
     <div className="user-profile-card">
       <div className="user-profile-img-wrap">
         <img
-          src={profile.photoUrls || ProfilePicPlaceholder}
+          src={user.photoUrls || ProfilePicPlaceholder}
           loading="lazy"
           alt="User profile photo"
+          className="image"
         />
       </div>
       <div className="user-profile-information">
         <div>
           <h2>
-            {profile.firstName} {profile.lastName}
+            {user.firstName} {user.lastName}
           </h2>
           <div className="overline text-burgundy-50 italic">Member since {dateJoined}</div>
         </div>
-        {profile.bio ? (
-          <p className="p-large">{profile.bio}</p>
+        {user.bio ? (
+          <p className="p-large">{user.bio}</p>
         ) : (
           <p className="p-large">
-            {`${profile.firstName} has not written anything about themselves yet.`}
+            {`${user.firstName} has not written anything about themselves yet.`}
           </p>
         )}
 
@@ -54,7 +53,7 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user, uid, currentUse
             AGE <span className="text-burgundy-50">{age}</span>
           </p>
           <p className="overline">
-            Location <span className="text-burgundy-50">{profile.location}</span>
+            Location <span className="text-burgundy-50">{user.location}</span>
           </p>
         </div>
       </div>

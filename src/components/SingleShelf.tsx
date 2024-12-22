@@ -1,5 +1,6 @@
 import { Book } from "../types/Book.types";
-import ProfilePicPlaceholder from "../assets/images/profilepic-placeholder.jpg";
+import PhotoPlaceholder from "../assets/images/profilepic-placeholder.jpg";
+import { Link } from "react-router";
 
 interface SingleShelfProps {
   type: "Currently reading" | "Want to read" | "Read";
@@ -16,16 +17,20 @@ const SingleShelf: React.FC<SingleShelfProps> = ({ type, books }) => {
           books.map((book) => {
             return (
               <div key={book.id} className="book-card">
-                <div className="book-thumbnail-wrap-med">
-                  <img
-                    src={book.volumeInfo.imageLinks?.thumbnail || ProfilePicPlaceholder}
-                    loading="lazy"
-                    alt={book.volumeInfo.title}
-                    className="image"
-                  />
-                </div>
+                <Link to={`/book/${book.id}`}>
+                  <div className="book-thumbnail-wrap-med">
+                    <img
+                      src={book.volumeInfo.imageLinks?.thumbnail || PhotoPlaceholder}
+                      loading="lazy"
+                      alt={book.volumeInfo.title}
+                      className="image"
+                    />
+                  </div>
+                </Link>
                 <div className="book-title-wrap">
-                  <h4>{book.volumeInfo.title}</h4>
+                  <Link to={`/book/${book.id}`}>
+                    <h4>{book.volumeInfo.title}</h4>
+                  </Link>
                   <p className="text-burgundy-50">by {book.volumeInfo.authors.join(", ")}</p>
                 </div>
               </div>

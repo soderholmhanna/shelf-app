@@ -4,6 +4,8 @@ export interface Book {
         title: string;
         imageLinks: {
             thumbnail: string;
+            medium: string;
+            large: string;
         };
         authors: string[];
         categories: string[];
