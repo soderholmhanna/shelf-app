@@ -42,3 +42,11 @@
   align-items: flex-start;
   display: flex;
 }
+
+.book-preview-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
