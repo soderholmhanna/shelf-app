@@ -52,6 +52,11 @@ const SignupPage = () => {
         dob: "",
         bio: "",
         location: "",
+        books: {
+          currentlyReading: [],
+          wantToRead: [],
+          read: [],
+        },
       });
 
       navigate("/home");
