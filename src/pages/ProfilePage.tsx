@@ -9,14 +9,11 @@ import ArrowLeft from "../assets/icons/arrow-left-green.svg";
 const ProfilePage = () => {
   const { currentUser } = useAuth();
   const { uid } = useParams();
-
-  // compare uid and currentuser id to check if nav "Profile" should be active?
-
-  console.log(uid);
   const navigate = useNavigate();
-
   const { data } = useGetUserDoc(uid);
   const userData = data?.[0];
+
+  const isMyProfile = currentUser?.uid === uid;
 
   if (!currentUser) {
     return <div>Loading...</div>;
@@ -41,7 +38,9 @@ const ProfilePage = () => {
             <>
               <UserProfileCard user={userData} uid={uid} currentUserId={currentUser.uid} />
               <div className="shelf-buttons-container">
-                <p className="overline">{currentUser.displayName}'s shelves:</p>
+                <p className="overline">
+                  {isMyProfile ? "My shelves:" : `${userData.firstName}'s shelves:`}
+                </p>
                 <div className="shelf-buttons">
                   <Link to={`/currently-reading/${uid}`} className="btn btn-green w-inline-block">
                     <p className="overline">Currently reading</p>

@@ -12,13 +12,7 @@ interface UserProfileCardProps {
 }
 
 const UserProfileCard: React.FC<UserProfileCardProps> = ({ user, uid, currentUserId }) => {
-  const isMyProfile = (authId: string, paramId: string) => {
-    if (authId === paramId) {
-      return true;
-    }
-  };
-
-  const test = isMyProfile(uid, currentUserId);
+  const isMyProfile = currentUserId === uid;
 
   const dateJoined = formatTimestamp(user.dateJoined);
   const age = user.dob ? calculateAge(user.dob) : "";
@@ -57,7 +51,7 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user, uid, currentUse
           </p>
         </div>
       </div>
-      {test && (
+      {isMyProfile && (
         <CustomButton
           textValue="Edit profile"
           classes="btn-simple edit-profile-button"

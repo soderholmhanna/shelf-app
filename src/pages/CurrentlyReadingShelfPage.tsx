@@ -1,5 +1,5 @@
 import ArrowLeft from "../assets/icons/arrow-left-green.svg";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import CustomButton from "../components/CustomButton";
 import Navigation from "../components/navigation/Navigation";
 import SingleShelf from "../components/SingleShelf";
@@ -11,10 +11,11 @@ import { getBooks } from "../services/googleBooksAPI";
 import ShelfButtons from "../components/ShelfButtons";
 
 const CurrentlyReadingShelfPage = () => {
+  const { uid } = useParams();
   const navigate = useNavigate();
   const [currentlyReading, setCurrentlyReading] = useState<Book[] | []>([]);
   const { currentUser } = useAuth();
-  const { data: userData } = useGetUserDoc(currentUser?.uid);
+  const { data: userData } = useGetUserDoc(uid);
 
   const profileBooks = userData?.[0].books;
 
