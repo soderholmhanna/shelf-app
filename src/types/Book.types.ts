@@ -17,3 +17,9 @@ export interface Book {
         averageRating: number;
     };
 }
+
+export interface SearchBooks {
+    kind: string;
+    totalItems: number;
+    items: Book[];
+}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Book } from "../types/Book.types";
+import { Book, SearchBooks } from "../types/Book.types";
 
 
 const instance = axios.create({
@@ -35,3 +35,12 @@ export const getBooks = async (ids: string[]) => {
     const values = await Promise.all(promises)
     return values;
 }
+
+export const searchBooks = async (query: string) => {
+    const queryString = encodeURIComponent(query);
+    const endpoint = `?q=${queryString}`;
+    console.log("Requesting endpoint:", endpoint);
+    const response = await get<SearchBooks>(endpoint);
+    console.log("API Response:", response);
+    return response;
+};

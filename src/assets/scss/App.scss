@@ -5,6 +5,7 @@
 @import "UserStyles";
 @import "Shelf";
 @import "Book";
+@import "SearchStyles";
 
 body {
   background-color: #f2efe2;
@@ -43,14 +44,6 @@ main {
   min-width: 60vh;
   padding: 50px 48px;
   display: flex;
-}
-
-.text-white {
-  color: #f2efe2;
-}
-
-.text-orange {
-  color: #ff432a;
 }
 
 .homepage {
