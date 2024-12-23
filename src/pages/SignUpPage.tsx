@@ -57,6 +57,7 @@ const SignupPage = () => {
           wantToRead: [],
           read: [],
         },
+        following: [],
       });
 
       navigate("/home");
