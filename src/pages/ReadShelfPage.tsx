@@ -1,5 +1,5 @@
 import ArrowLeft from "../assets/icons/arrow-left-green.svg";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import CustomButton from "../components/CustomButton";
 import Navigation from "../components/navigation/Navigation";
 import SingleShelf from "../components/SingleShelf";
@@ -11,10 +11,13 @@ import { getBooks } from "../services/googleBooksAPI";
 import ShelfButtons from "../components/ShelfButtons";
 
 const ReadShelfPage = () => {
+  const { uid } = useParams();
   const navigate = useNavigate();
   const [read, setRead] = useState<Book[] | []>([]);
   const { currentUser } = useAuth();
-  const { data: userData } = useGetUserDoc(currentUser?.uid);
+  const { data: userData } = useGetUserDoc(uid);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const profileBooks = userData?.[0].books;
 
@@ -24,15 +27,26 @@ const ReadShelfPage = () => {
   };
 
   useEffect(() => {
-    if (profileBooks) {
-      const fetchBooks = async () => {
+    const fetchBooks = async () => {
+      if (!profileBooks) return;
+
+      setLoading(true);
+      setError("");
+
+      try {
         const readBooks = await getShelf(profileBooks.read);
-
         setRead(readBooks);
-      };
+      } catch (err) {
+        const message =
+          err instanceof Error ? err.message : "Something went wrong. Please try again.";
+        setError(message);
+        console.error(message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      fetchBooks();
-    }
+    fetchBooks();
   }, [profileBooks]);
 
   return (
@@ -49,15 +63,27 @@ const ReadShelfPage = () => {
               textValue="Back"
               onClick={() => navigate(-1)}
             />
-            {currentUser && (
+            {currentUser && uid && (
               <div className="shelf-buttons-container">
-                <p className="overline">Other shelves:</p>
-                <ShelfButtons currentlyReading wantToRead uid={currentUser.uid} />
+                <p className="overline">
+                  {uid === currentUser.uid
+                    ? "My shelves:"
+                    : `${userData?.[0]?.firstName}'s shelves:`}
+                </p>
+                <ShelfButtons
+                  currentlyReading
+                  wantToRead
+                  uid={uid}
+                  currentUserId={currentUser.uid}
+                />
               </div>
             )}
           </div>
 
-          <SingleShelf type="Read" books={read} />
+          {loading && <p>Loading books...</p>}
+          {error && <p className="error-text">{error}</p>}
+
+          {!loading && !error && <SingleShelf type="Read" books={read} />}
         </div>
       </div>
     </main>

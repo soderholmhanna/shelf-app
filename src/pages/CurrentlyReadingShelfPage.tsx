@@ -16,6 +16,8 @@ const CurrentlyReadingShelfPage = () => {
   const [currentlyReading, setCurrentlyReading] = useState<Book[] | []>([]);
   const { currentUser } = useAuth();
   const { data: userData } = useGetUserDoc(uid);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const profileBooks = userData?.[0].books;
 
@@ -25,15 +27,26 @@ const CurrentlyReadingShelfPage = () => {
   };
 
   useEffect(() => {
-    if (profileBooks) {
-      const fetchBooks = async () => {
+    const fetchBooks = async () => {
+      if (!profileBooks) return;
+
+      setLoading(true);
+      setError("");
+
+      try {
         const currentlyReadingBooks = await getShelf(profileBooks.currentlyReading);
-
         setCurrentlyReading(currentlyReadingBooks);
-      };
+      } catch (err) {
+        const message =
+          err instanceof Error ? err.message : "Something went wrong. Please try again.";
+        setError(message);
+        console.error(message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      fetchBooks();
-    }
+    fetchBooks();
   }, [profileBooks]);
 
   return (
@@ -50,14 +63,22 @@ const CurrentlyReadingShelfPage = () => {
               textValue="Back"
               onClick={() => navigate(-1)}
             />
-            {currentUser && (
+            {currentUser && uid && (
               <div className="shelf-buttons-container">
-                <p className="overline">Other shelves:</p>
-                <ShelfButtons wantToRead read uid={currentUser.uid} />
+                <p className="overline">
+                  {uid === currentUser.uid
+                    ? "My shelves:"
+                    : `${userData?.[0]?.firstName}'s shelves:`}
+                </p>
+                <ShelfButtons wantToRead read uid={uid} currentUserId={currentUser.uid} />
               </div>
             )}
           </div>
-          <SingleShelf type="Currently reading" books={currentlyReading} />
+
+          {loading && <p>Loading books...</p>}
+          {error && <p className="error-text">{error}</p>}
+
+          {!loading && !error && <SingleShelf type="Currently reading" books={currentlyReading} />}
         </div>
       </div>
     </main>
