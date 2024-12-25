@@ -33,6 +33,7 @@ export type UpdateProfileType = {
 
 export type User = {
     _id: string;
+    id: string;
     email: string;
     dateJoined: Timestamp;
     firstName?: string;

@@ -32,8 +32,8 @@ const Navigation = () => {
           <div>My books</div>
           <img src={ArrowRight} loading="lazy" alt="Arrow right" />
         </NavLink>
-        <NavLink end to={"/friends"} className="nav-link">
-          <div>Friends</div>
+        <NavLink end to={"/people"} className="nav-link">
+          <div>People</div>
           <img src={ArrowRight} loading="lazy" alt="Arrow right" />
         </NavLink>
         <NavLink end to={"/logout"} className="nav-link">

@@ -15,6 +15,7 @@ import BookPage from "./pages/BookPage";
 import WantToReadShelfPage from "./pages/WantToReadShelfPage";
 import ReadShelfPage from "./pages/ReadShelfPage";
 import SearchPage from "./pages/SearchPage";
+import PeoplePage from "./pages/PeoplePage";
 
 const App = () => {
   return (
@@ -30,13 +31,14 @@ const App = () => {
           <Route path="/profile/update-profile" element={<UpdateProfilePage />} />
 
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/people" element={<PeoplePage />} />
 
           <Route path="/shelves/:uid" element={<ShelvesPage />} />
           <Route path="/currently-reading/:uid" element={<CurrentlyReadingShelfPage />} />
           <Route path="/want-to-read/:uid" element={<WantToReadShelfPage />} />
           <Route path="/read/:uid" element={<ReadShelfPage />} />
-
           <Route path="/book/:bookId" element={<BookPage />} />
+
           <Route path="/logout" element={<LogoutPage />} />
         </Route>
 

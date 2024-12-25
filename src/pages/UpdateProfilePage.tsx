@@ -67,7 +67,7 @@ const UpdateProfilePage = () => {
   const passwordRef = useRef("");
   passwordRef.current = watch("password");
 
-  const userId = userData && userData.length > 0 ? userData[0]._id : null;
+  const userId = userData && userData.length > 0 ? userData[0].id : null;
 
   const userDocRef = userId ? doc(db, "users", userId) : null;
 
@@ -240,7 +240,17 @@ const UpdateProfilePage = () => {
 
                       <Form.Group controlId="dob" className="mb-3">
                         <Form.Label>Date of birth</Form.Label>
-                        <Form.Control placeholder="1995-02-20" type="text" {...register("dob")} />
+                        <Form.Control
+                          placeholder="1995-02-20"
+                          type="text"
+                          {...register("dob", {
+                            required: "Date of birth is required",
+                            pattern: {
+                              value: /^\d{4}-\d{2}-\d{2}$/,
+                              message: "Date must be in the format YYYY-MM-DD",
+                            },
+                          })}
+                        />
                         {errors.dob && (
                           <Alert variant="warning">{errors.dob.message || "Invalid value"}</Alert>
                         )}

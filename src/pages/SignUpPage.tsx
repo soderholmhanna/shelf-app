@@ -45,6 +45,7 @@ const SignupPage = () => {
 
       await addDocument(usersCol, {
         _id: user.uid,
+        id: user.uid,
         email: user.email || "",
         firstName: data.firstName,
         lastName: data.lastName,
