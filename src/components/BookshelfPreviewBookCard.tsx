@@ -2,12 +2,15 @@ import React from "react";
 import { Book } from "../types/Book.types";
 import ProfilePicPlaceholder from "../assets/images/profilepic-placeholder.jpg";
 import { Link } from "react-router";
+import { removeHTMLTags } from "../assets/helpers/removeHTMLtags";
 
 interface BookshelfPreviewBookCardProps {
   book: Book;
 }
 
 const BookshelfPreviewBookCard: React.FC<BookshelfPreviewBookCardProps> = ({ book }) => {
+  const description = removeHTMLTags(book.volumeInfo.description);
+
   return (
     <div className="bookshelf-book-preview" key={book.id}>
       <Link to={`/book/${book.id}`}>
@@ -29,7 +32,7 @@ const BookshelfPreviewBookCard: React.FC<BookshelfPreviewBookCardProps> = ({ boo
           <p className="text-burgundy-50">by {book.volumeInfo.authors.join(", ")}</p>
         </div>
         <div className="book-preview-description">
-          <p>{book.volumeInfo.description}</p>
+          <p>{description}</p>
         </div>
       </div>
     </div>

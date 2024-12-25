@@ -11,6 +11,7 @@ import { doc, updateDoc, arrayUnion, arrayRemove, getDoc } from "firebase/firest
 import { db } from "../services/firebase";
 import useAuth from "../hooks/useAuth";
 import useGetUserDoc from "../hooks/useGetUserDoc";
+import { removeHTMLTags } from "../assets/helpers/removeHTMLtags";
 
 const BookPage = () => {
   const navigate = useNavigate();
@@ -25,6 +26,8 @@ const BookPage = () => {
 
   const userId = userData && userData.length > 0 ? userData[0]._id : null;
   const userDocRef = userId ? doc(db, "users", userId) : null;
+
+  const description = removeHTMLTags(book?.volumeInfo.description);
 
   useEffect(() => {
     if (bookId) {
@@ -126,7 +129,7 @@ const BookPage = () => {
                     by {book?.volumeInfo.authors?.join(", ")}
                   </p>
                 </div>
-                <p className="p-large">{book?.volumeInfo.description}</p>
+                <p className="p-large">{description}</p>
 
                 {isError && error && <Alert variant="danger">{error}</Alert>}
 
