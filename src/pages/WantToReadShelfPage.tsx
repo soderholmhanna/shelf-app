@@ -9,6 +9,7 @@ import useAuth from "../hooks/useAuth";
 import useGetUserDoc from "../hooks/useGetUserDoc";
 import { getBooks } from "../services/googleBooksAPI";
 import ShelfButtons from "../components/ShelfButtons";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const WantToReadShelfPage = () => {
   const { uid } = useParams();
@@ -75,7 +76,7 @@ const WantToReadShelfPage = () => {
             )}
           </div>
 
-          {loading && <p>Loading books...</p>}
+          {loading && <LoadingSpinner />}
           {error && <p className="error-text">{error}</p>}
 
           {!loading && !error && <SingleShelf type="Want to read" books={wantToRead} />}
