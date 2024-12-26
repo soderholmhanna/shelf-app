@@ -6,22 +6,22 @@ import PhotoPlaceholder from "../assets/images/profilepic-placeholder.jpg";
 import { getBook } from "../services/googleBooksAPI";
 import { useEffect, useState } from "react";
 import { Book } from "../types/Book.types";
-import { Form, Alert } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { doc, updateDoc, arrayUnion, arrayRemove, getDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import useAuth from "../hooks/useAuth";
 import useGetUserDoc from "../hooks/useGetUserDoc";
 import { removeHTMLTags } from "../assets/helpers/removeHTMLtags";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const BookPage = () => {
   const navigate = useNavigate();
   const { bookId } = useParams();
   const { currentUser } = useAuth();
   const { data: userData } = useGetUserDoc(currentUser?.uid);
-
   const [book, setBook] = useState<Book | null>(null);
   const [shelf, setShelf] = useState<"currentlyReading" | "wantToRead" | "read" | "none">("none");
-  const [isError, setIsError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const userId = userData && userData.length > 0 ? userData[0]._id : null;
@@ -30,17 +30,31 @@ const BookPage = () => {
   const description = removeHTMLTags(book?.volumeInfo.description);
 
   useEffect(() => {
-    if (bookId) {
-      const fetchBook = async () => {
+    const fetchBook = async () => {
+      if (!bookId) return;
+      setLoading(true);
+      setError("");
+
+      try {
         const currentBook = await getBook(bookId);
         setBook(currentBook);
-      };
-      fetchBook();
-    }
+      } catch (err) {
+        const message =
+          err instanceof Error ? err.message : "Something went wrong. Please try again.";
+        setError(message);
+        console.error(message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBook();
   }, [bookId]);
 
   useEffect(() => {
     const fetchUserBooks = async () => {
+      if (!userDocRef) return;
+
       try {
         if (userDocRef && bookId) {
           const userSnapshot = await getDoc(userDocRef);
@@ -63,7 +77,7 @@ const BookPage = () => {
       }
     };
 
-    if (userDocRef) fetchUserBooks();
+    fetchUserBooks();
   }, [userDocRef, bookId]);
 
   const handleShelfChange = async (
@@ -72,7 +86,6 @@ const BookPage = () => {
     if (!userDocRef || !bookId) return;
 
     try {
-      setIsError(false);
       setError(null);
 
       if (shelf !== "none") {
@@ -90,7 +103,6 @@ const BookPage = () => {
       setShelf(newShelf);
     } catch (err) {
       console.error("Error updating shelf:", err);
-      setIsError(true);
       setError("Something went wrong while updating your shelf. Please try again!");
     }
   };
@@ -111,41 +123,44 @@ const BookPage = () => {
             />
           </div>
           <div className="shelf-container">
-            <div className="book-page-container">
-              <div className="book-image-container">
-                <div className="book-thumbnail-wrap-large">
-                  <img
-                    src={book?.volumeInfo.imageLinks?.thumbnail || PhotoPlaceholder}
-                    loading="lazy"
-                    alt={book?.volumeInfo.title}
-                    className="image"
-                  />
+            {loading && <LoadingSpinner />}
+            {error && <p className="error-text">{error}</p>}
+
+            {book && !error && !loading && (
+              <div className="book-page-container">
+                <div className="book-image-container">
+                  <div className="book-thumbnail-wrap-large">
+                    <img
+                      src={book?.volumeInfo.imageLinks?.thumbnail || PhotoPlaceholder}
+                      loading="lazy"
+                      alt={book?.volumeInfo.title}
+                      className="image"
+                    />
+                  </div>
+                </div>
+                <div className="bookpage-text-container">
+                  <div className="book-title-wrap">
+                    <h2>{book?.volumeInfo.title}</h2>
+                    <p className="p-large text-burgundy-50">
+                      by {book?.volumeInfo.authors?.join(", ")}
+                    </p>
+                  </div>
+                  <p className="p-large">{description}</p>
+
+                  <Form.Select
+                    aria-label="Add to shelf"
+                    className="btn btn-burgundy"
+                    value={shelf}
+                    onChange={(e) => handleShelfChange(e.target.value as typeof shelf)}
+                  >
+                    <option value="none">Add to...</option>
+                    <option value="currentlyReading">Currently reading</option>
+                    <option value="wantToRead">Want to read</option>
+                    <option value="read">Read</option>
+                  </Form.Select>
                 </div>
               </div>
-              <div className="bookpage-text-container">
-                <div className="book-title-wrap">
-                  <h2>{book?.volumeInfo.title}</h2>
-                  <p className="p-large text-burgundy-50">
-                    by {book?.volumeInfo.authors?.join(", ")}
-                  </p>
-                </div>
-                <p className="p-large">{description}</p>
-
-                {isError && error && <Alert variant="danger">{error}</Alert>}
-
-                <Form.Select
-                  aria-label="Add to shelf"
-                  className="btn btn-burgundy"
-                  value={shelf}
-                  onChange={(e) => handleShelfChange(e.target.value as typeof shelf)}
-                >
-                  <option value="none">Add to...</option>
-                  <option value="currentlyReading">Currently reading</option>
-                  <option value="wantToRead">Want to read</option>
-                  <option value="read">Read</option>
-                </Form.Select>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

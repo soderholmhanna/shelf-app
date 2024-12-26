@@ -63,6 +63,10 @@ const ReadShelfPage = () => {
               textValue="Back"
               onClick={() => navigate(-1)}
             />
+
+            {loading && <p>Loading books...</p>}
+            {error && <p className="error-text">{error}</p>}
+
             {currentUser && uid && (
               <div className="shelf-buttons-container">
                 <p className="overline">
@@ -79,9 +83,6 @@ const ReadShelfPage = () => {
               </div>
             )}
           </div>
-
-          {loading && <p>Loading books...</p>}
-          {error && <p className="error-text">{error}</p>}
 
           {!loading && !error && <SingleShelf type="Read" books={read} />}
         </div>

@@ -8,6 +8,7 @@ import { Book } from "../types/Book.types";
 import useAuth from "../hooks/useAuth";
 import useGetUserDoc from "../hooks/useGetUserDoc";
 import { getBooks } from "../services/googleBooksAPI";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const ShelvesPage = () => {
   const navigate = useNavigate();
@@ -16,31 +17,44 @@ const ShelvesPage = () => {
   const [read, setRead] = useState<Book[] | []>([]);
   const { currentUser } = useAuth();
   const { data: userData } = useGetUserDoc(currentUser?.uid);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const profileBooks = userData?.[0].books;
 
-  const getShelf = async (shelf: string[]) => {
-    const bookData = await getBooks(shelf);
-    return bookData;
+  const fetchShelfBooks = async (shelf: string[]): Promise<Book[]> => {
+    return await getBooks(shelf);
   };
 
   useEffect(() => {
-    if (profileBooks) {
-      const fetchBooks = async () => {
-        const currentlyReadingBooks = await getShelf(profileBooks.currentlyReading);
-        const wantToReadBooks = await getShelf(profileBooks.wantToRead);
-        const readBooks = await getShelf(profileBooks.read);
+    const fetchShelves = async () => {
+      if (!profileBooks) return;
+
+      setLoading(true);
+      setError("");
+
+      try {
+        const [currentlyReadingBooks, wantToReadBooks, readBooks] = await Promise.all([
+          fetchShelfBooks(profileBooks.currentlyReading || []),
+          fetchShelfBooks(profileBooks.wantToRead || []),
+          fetchShelfBooks(profileBooks.read || []),
+        ]);
 
         setCurrentlyReading(currentlyReadingBooks);
         setWantToRead(wantToReadBooks);
         setRead(readBooks);
-      };
+      } catch (err) {
+        const message =
+          err instanceof Error ? err.message : "Something went wrong. Please try again.";
+        setError(message);
+        console.error(message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      fetchBooks();
-    }
+    fetchShelves();
   }, [profileBooks]);
-
-  console.log({ profileBooks });
 
   return (
     <main>
@@ -57,7 +71,11 @@ const ShelvesPage = () => {
               onClick={() => navigate(-1)}
             />
           </div>
-          {currentUser && profileBooks && (
+
+          {loading && <LoadingSpinner />}
+          {error && <p className="error-text">{error}</p>}
+
+          {currentUser && profileBooks && !loading && !error && (
             <>
               <BookshelfPreview
                 type="Currently reading"
@@ -75,3 +93,13 @@ const ShelvesPage = () => {
 };
 
 export default ShelvesPage;
+
+// const fetchBooks = async () => {
+//   const currentlyReadingBooks = await getShelf(profileBooks.currentlyReading);
+//   const wantToReadBooks = await getShelf(profileBooks.wantToRead);
+//   const readBooks = await getShelf(profileBooks.read);
+
+//   setCurrentlyReading(currentlyReadingBooks);
+//   setWantToRead(wantToReadBooks);
+//   setRead(readBooks);
+// };

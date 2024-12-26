@@ -81,7 +81,7 @@ const ProfilePage = () => {
               <>
                 {isFollowing ? (
                   <CustomButton
-                    classes="btn-orange"
+                    classes="btn-orange-outline"
                     hasIcon={false}
                     textValue="Unfollow"
                     onClick={handleUnfollow}
