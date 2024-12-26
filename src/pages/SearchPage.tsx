@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { SearchBooks } from "../types/Book.types";
 import { searchBooks } from "../services/googleBooksAPI";
 import SingleShelf from "../components/SingleShelf";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const SearchPage = () => {
   const navigate = useNavigate();
@@ -108,7 +109,7 @@ const SearchPage = () => {
             </div>
           )}
 
-          {loading && <p>Loading...</p>}
+          {loading && <LoadingSpinner />}
 
           {results && <SingleShelf type="Search" books={results.items} searchQuery={searchQuery} />}
         </div>

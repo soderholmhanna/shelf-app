@@ -3,15 +3,17 @@ import PhotoPlaceholder from "../assets/images/profilepic-placeholder.jpg";
 import { Link } from "react-router";
 
 interface SingleShelfProps {
-  type: "Currently reading" | "Want to read" | "Read";
+  type: "Currently reading" | "Want to read" | "Read" | "Search";
+  searchQuery?: string;
   books: Book[] | [];
 }
 
-const SingleShelf: React.FC<SingleShelfProps> = ({ type, books }) => {
-  console.log({ books });
+const SingleShelf: React.FC<SingleShelfProps> = ({ type, books, searchQuery }) => {
+  const heading = type === "Search" && searchQuery ? `Showing results for "${searchQuery}"` : type;
+
   return (
     <div className="shelf-container">
-      <h2>{type}</h2>
+      <h2>{heading}</h2>
       <div className="shelf-books">
         {books.length > 0 ? (
           books.map((book) => {
@@ -31,7 +33,7 @@ const SingleShelf: React.FC<SingleShelfProps> = ({ type, books }) => {
                   <Link to={`/book/${book.id}`}>
                     <h4>{book.volumeInfo.title}</h4>
                   </Link>
-                  <p className="text-burgundy-50">by {book.volumeInfo.authors.join(", ")}</p>
+                  <p className="text-burgundy-50">by {book.volumeInfo.authors}</p>
                 </div>
               </div>
             );
