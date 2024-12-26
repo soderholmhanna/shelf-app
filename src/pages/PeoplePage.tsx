@@ -7,6 +7,7 @@ import { useState } from "react";
 import useSearchUsers from "../hooks/useSearchUsers";
 import UserProfileCard from "../components/UserProfileCard";
 import useAuth from "../hooks/useAuth";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const PeoplePage = () => {
   const { currentUser } = useAuth();
@@ -38,7 +39,7 @@ const PeoplePage = () => {
         <div className="main-content">
           <div className="inline-buttons">
             <CustomButton
-              classes="btn-green"
+              classes="btn-green overline"
               hasIcon={true}
               iconLeading={true}
               iconSrc={ArrowLeft}
@@ -79,7 +80,7 @@ const PeoplePage = () => {
             </div>
           )}
 
-          {loading && <p>Loading...</p>}
+          {loading && <LoadingSpinner />}
 
           {results.length > 0 && currentUser ? (
             <div className="shelf-container">

@@ -13,7 +13,7 @@ const NotFoundPage = () => {
         <div className="main-content">
           <div className="inline-buttons">
             <CustomButton
-              classes="btn-green"
+              classes="btn-green overline"
               hasIcon={true}
               iconLeading={true}
               iconSrc={ArrowLeft}

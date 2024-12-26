@@ -18,6 +18,7 @@ import Navigation from "../components/navigation/Navigation";
 import CustomButton from "../components/CustomButton";
 import ArrowLeft from "../assets/icons/arrow-left-green.svg";
 import { useNavigate } from "react-router";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const UpdateProfilePage = () => {
   const [error, setError] = useState<string | null>(null);
@@ -151,7 +152,7 @@ const UpdateProfilePage = () => {
         <div className="main-content">
           <div className="inline-buttons">
             <CustomButton
-              classes="btn-green"
+              classes="btn-green overline"
               hasIcon={true}
               iconLeading={true}
               iconSrc={ArrowLeft}
@@ -160,7 +161,7 @@ const UpdateProfilePage = () => {
             />
           </div>
           <Container className="py-3 center-y">
-            {loading && <div className="loading">Loading...</div>}
+            {loading && <LoadingSpinner />}
             {isError && error && <div className="error">{error}</div>}
 
             <Row>

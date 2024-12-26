@@ -39,6 +39,10 @@ nav {
   color: #ff432a;
 }
 
+.nav-link.active {
+  color: #ff432a !important;
+}
+
 #tabmob-nav {
   position: fixed;
   width: 100vw;
@@ -79,7 +83,7 @@ nav {
   width: 1.5em;
   height: 1.5em;
   vertical-align: middle;
-  background-image: url("src/assets/icons/Menu.svg");
+  background-image: url("src/assets/icons/Menu.svg") !important;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;

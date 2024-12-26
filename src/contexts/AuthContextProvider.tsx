@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import React, { PropsWithChildren, createContext, useEffect, useState } from "react";
 import { auth } from "../services/firebase";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 interface AuthType {
   signup: (email: string, password: string) => Promise<UserCredential>;
@@ -135,7 +136,7 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
     <AuthContext.Provider value={authContextValue}>
       {loading ? (
         <div>
-          <span className="visibility-hidden">Loading...</span>
+          <LoadingSpinner />
         </div>
       ) : (
         <>{children}</>

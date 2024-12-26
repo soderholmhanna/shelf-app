@@ -24,25 +24,25 @@ const ShelfButtons: React.FC<ShelfButtonsProps> = ({
               ? `currently-reading/${currentUserId}`
               : `currently-reading/${uid}`
           }`}
-          className="btn btn-green"
+          className="btn btn-green overline"
         >
-          <p className="overline">Currently reading</p>
+          Currently reading
         </Link>
       )}
       {wantToRead && (
         <Link
           to={`/${currentUserId === uid ? `want-to-read/${currentUserId}` : `want-to-read/${uid}`}`}
-          className="btn btn-green"
+          className="btn btn-green overline"
         >
-          <p className="overline">Want to read</p>
+          Want to read
         </Link>
       )}
       {read && (
         <Link
           to={`/${currentUserId === uid ? `read/${currentUserId}` : `read/${uid}`}`}
-          className="btn btn-green"
+          className="btn btn-green overline"
         >
-          <p className="overline">Read</p>
+          Read
         </Link>
       )}
     </div>
