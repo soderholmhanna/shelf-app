@@ -6,6 +6,7 @@
 @import "Shelf";
 @import "Book";
 @import "SearchStyles";
+@import "bootstrap/dist/css/bootstrap.min.css";
 
 body {
   background-color: #f2efe2;
@@ -44,6 +45,10 @@ main {
   min-width: 60vh;
   padding: 50px 48px;
   display: flex;
+
+  @media screen and (max-width: 991px) {
+    padding: 80px 30px 50px 30px;
+  }
 }
 
 .homepage {

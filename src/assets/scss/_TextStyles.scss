@@ -1,3 +1,22 @@
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #381519;
+}
+
 h1 {
   font-size: 48px;
   font-weight: 700;
@@ -17,6 +36,15 @@ h3 {
 p {
   font-family: Georgia, Times, Times New Roman, serif;
   font-size: 12px;
+}
+
+a {
+  text-decoration: none;
+  transition: 150ms ease-in-out;
+}
+
+a:hover {
+  opacity: 70%;
 }
 
 .p-large {
