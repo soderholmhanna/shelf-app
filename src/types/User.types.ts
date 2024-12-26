@@ -47,7 +47,7 @@ export type User = {
         wantToRead: string[] | [];
         read: string[] | [];
     }
-    following: string[] | [];
+    following: string[];
 };
 
 export type NewUser = Omit<User, "_id">;

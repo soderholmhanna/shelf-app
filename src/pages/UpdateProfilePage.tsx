@@ -67,7 +67,7 @@ const UpdateProfilePage = () => {
   const passwordRef = useRef("");
   passwordRef.current = watch("password");
 
-  const userId = userData && userData.length > 0 ? userData[0].id : null;
+  const userId = userData && userData.length > 0 ? userData[0]._id : null;
 
   const userDocRef = userId ? doc(db, "users", userId) : null;
 
@@ -94,6 +94,7 @@ const UpdateProfilePage = () => {
             setIsError(true);
             if (err instanceof Error) {
               setError(err.message);
+              console.error(err.message);
             } else {
               setError("Something went wrong trying to update profile");
             }
@@ -244,7 +245,6 @@ const UpdateProfilePage = () => {
                           placeholder="1995-02-20"
                           type="text"
                           {...register("dob", {
-                            required: "Date of birth is required",
                             pattern: {
                               value: /^\d{4}-\d{2}-\d{2}$/,
                               message: "Date must be in the format YYYY-MM-DD",

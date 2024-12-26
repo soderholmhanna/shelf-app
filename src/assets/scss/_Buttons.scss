@@ -20,12 +20,18 @@ button,
   grid-row-gap: 16px;
   flex-flow: wrap;
   display: flex;
+  justify-content: space-between;
 }
 
 .btn-green {
   border: 1px solid #797d45;
   color: #797d45;
   min-width: 120px;
+}
+
+.btn-orange {
+  background-color: #ff432a;
+  color: #f2efe2;
 }
 
 .btn.btn-burgundy {
