@@ -17,7 +17,7 @@ const LandingPage = () => {
             incididunt ut labore et dolore magna aliqua |
           </h3>
           {!currentUser ? (
-            <div className="flex gap-4 pt-10">
+            <div className="shelf-buttons mt-4">
               <CustomButton
                 textValue="Sign up"
                 hasIcon={true}
@@ -51,7 +51,7 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <div className="homepage-half homepage-image bg-white">
+      <div className="homepage-half homepage-image bg-white" id="landing-page-img">
         <svg
           width="339"
           height="430"

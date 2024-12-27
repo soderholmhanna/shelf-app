@@ -1,4 +1,5 @@
 import { Timestamp } from "firebase/firestore";
+import { Book } from "./Book.types";
 
 export type SignUpType = {
     firstName: string;
@@ -51,3 +52,16 @@ export type User = {
 };
 
 export type NewUser = Omit<User, "_id">;
+
+export type Post = {
+    userId: string;
+    type: "Currently reading" | "Want to read" | "Read";
+    bookId: string;
+}
+
+export type PostWithBook = {
+    userId: string;
+    type: "Currently reading" | "Want to read" | "Read";
+    bookId: string;
+    book?: Book;
+};

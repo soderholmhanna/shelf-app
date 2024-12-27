@@ -49,11 +49,12 @@ const SignInPage = () => {
       <div className="homepage-half bg-burgundy">
         <LandingPageNavigation />
         <div className="homepage-text-wrap">
-          <h2>SIGN IN</h2>
-          <Form onSubmit={handleSubmit(onLogin)}>
+          <h2 className="text-orange">SIGN IN</h2>
+          <Form onSubmit={handleSubmit(onLogin)} className="text-white">
             <Form.Group controlId="email" className="mb-3">
               <Form.Label>Email</Form.Label>
               <Form.Control
+                className="input-field"
                 placeholder="my-email@email.com"
                 type="email"
                 {...register("email", {
@@ -64,8 +65,9 @@ const SignInPage = () => {
             </Form.Group>
 
             <Form.Group controlId="password" className="mb-3">
-              <Form.Label>Password</Form.Label>
+              <Form.Label className="form-label">Password</Form.Label>
               <Form.Control
+                className="input-field"
                 type="password"
                 autoComplete="new-password"
                 {...register("password", {
@@ -75,7 +77,7 @@ const SignInPage = () => {
               {errors.password && <p>{errors.password.message || "Invalid value"}</p>}
             </Form.Group>
 
-            <Button disabled={isSubmitting} type="submit" variant="primary">
+            <Button disabled={isSubmitting} type="submit" className="btn-orange">
               {isSubmitting ? "Logging in..." : "Log in"}
             </Button>
             {isError && (
@@ -85,7 +87,7 @@ const SignInPage = () => {
         </div>
       </div>
 
-      <div className="homepage-half homepage-image bg-white">
+      <div className="homepage-half homepage-image bg-white" id="landing-page-img">
         <svg
           width="127"
           height="358"
