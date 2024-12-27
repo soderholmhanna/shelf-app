@@ -78,7 +78,7 @@ const SearchPage = () => {
           </div>
           <div className="search-wrap">
             <div className="shelf-container">
-              <h1>Search</h1>
+              <h1>Search for books</h1>
             </div>
             <div className="search-form">
               <Form onSubmit={handleSubmit} className="form-wrap">

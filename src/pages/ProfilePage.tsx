@@ -113,14 +113,14 @@ const ProfilePage = () => {
                   {isMyProfile ? "My shelves:" : `${userData.firstName}'s shelves:`}
                 </p>
                 <div className="shelf-buttons">
-                  <Link to={`/currently-reading/${uid}`} className="btn btn-green">
-                    <p className="overline">Currently reading</p>
+                  <Link to={`/currently-reading/${uid}`} className="btn btn-green overline">
+                    Currently reading
                   </Link>
-                  <Link to={`/want-to-read/${uid}`} className="btn btn-green">
-                    <p className="overline">Want to read</p>
+                  <Link to={`/want-to-read/${uid}`} className="btn btn-green overline">
+                    Want to read
                   </Link>
-                  <Link to={`/read/${uid}`} className="btn btn-green">
-                    <p className="overline">Read</p>
+                  <Link to={`/read/${uid}`} className="btn btn-green overline">
+                    Read
                   </Link>
                 </div>
               </div>

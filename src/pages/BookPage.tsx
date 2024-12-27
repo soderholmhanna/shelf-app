@@ -138,6 +138,7 @@ const BookPage = () => {
                     />
                   </div>
                 </div>
+
                 <div className="bookpage-text-container">
                   <div className="book-title-wrap">
                     <h2>{book?.volumeInfo.title}</h2>
@@ -145,8 +146,6 @@ const BookPage = () => {
                       by {book?.volumeInfo.authors?.join(", ")}
                     </p>
                   </div>
-                  <p className="p-large">{description}</p>
-
                   <Form.Select
                     aria-label="Add to shelf"
                     className="btn btn-burgundy"
@@ -158,6 +157,7 @@ const BookPage = () => {
                     <option value="wantToRead">Want to read</option>
                     <option value="read">Read</option>
                   </Form.Select>
+                  <p className="p-large">{description}</p>
                 </div>
               </div>
             )}

@@ -49,14 +49,14 @@ const PeoplePage = () => {
           </div>
           <div className="search-wrap">
             <div className="shelf-container">
-              <h1>People</h1>
+              <h1>Search for people</h1>
             </div>
             <div className="search-form">
               <Form onSubmit={handleSubmit} className="form-wrap">
                 <InputGroup className="form">
                   <Form.Control
                     type="text"
-                    placeholder="Search for users by name or email..."
+                    placeholder="Search for users by name..."
                     className="input-field"
                     value={inputValue}
                     onChange={handleInputChange}
