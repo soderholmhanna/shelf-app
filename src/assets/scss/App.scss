@@ -5,12 +5,20 @@
 @import "UserStyles";
 @import "Shelf";
 @import "Book";
-@import "SearchStyles";
+@import "FormStyles";
 @import "bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+
+@font-face {
+  font-family: "Coolvetica", sans-serif;
+  src: url("src/assets/fonts/coolvetica rg it.otf");
+  src: url("src/assets/fonts/coolvetica rg.otf");
+}
 
 body {
   background-color: #f2efe2;
   color: #381519;
+  font-family: "Coolvetica", Helvetica, sans-serif;
 }
 
 main {
@@ -38,16 +46,20 @@ main {
 }
 
 .main-content {
-  grid-column-gap: 25px;
-  grid-row-gap: 25px;
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 1.5rem;
   flex-flow: column;
   flex: 1;
-  min-width: 60vh;
+  min-width: 60vw;
   padding: 50px 48px;
   display: flex;
 
   @media screen and (max-width: 991px) {
-    padding: 80px 30px 50px 30px;
+    padding: 5rem 1.875rem 3.125rem 1.875rem;
+  }
+
+  @media screen and (max-width: 570px) {
+    padding: 5rem 1.25rem 3.125rem 1.25rem;
   }
 }
 
@@ -72,6 +84,10 @@ main {
 
 .bg-burgundy {
   background-color: #381519;
+}
+
+.bg-white {
+  background-color: #f9f7f1;
 }
 
 .homepage-half {
@@ -111,7 +127,7 @@ main {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 25px 25px 0 25px;
+  padding: 1.5rem 1.5rem 0 1.5rem;
   position: absolute;
   left: 0;
   top: 0;

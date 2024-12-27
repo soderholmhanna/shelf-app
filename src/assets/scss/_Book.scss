@@ -1,19 +1,33 @@
 .book-page-container {
-  grid-column-gap: 25px;
+  grid-column-gap: 1.5rem;
   flex-flow: wrap;
   width: 100%;
   display: flex;
+
+  @media screen and (max-width: 570px) {
+    flex-flow: column;
+  }
 }
 
 .book-image-container {
   flex-flow: column;
   max-width: 40%;
   display: flex;
+
+  @media screen and (max-width: 570px) {
+    max-width: 100%;
+  }
 }
 
 .book-thumbnail-wrap-large {
   width: 100%;
   height: 400px;
+}
+
+.book-title-wrap {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
 }
 
 .bookpage-text-container {
@@ -24,4 +38,8 @@
   display: flex;
   padding-right: 65px;
   align-items: flex-start;
+
+  @media screen and (max-width: 570px) {
+    padding-right: 0;
+  }
 }

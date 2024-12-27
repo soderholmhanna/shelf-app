@@ -32,6 +32,7 @@ button,
 .btn-orange {
   background-color: #ff432a;
   color: #f2efe2;
+  border: none;
 }
 
 .btn-orange-outline {
@@ -61,6 +62,11 @@ button,
   justify-content: space-between;
   align-items: flex-start;
   display: flex;
+
+  @media screen and (max-width: 570px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 .shelf-buttons-container {
@@ -70,13 +76,35 @@ button,
   justify-content: flex-start;
   align-items: center;
   display: flex;
+
+  @media screen and (max-width: 570px) {
+    width: 100vw;
+    margin-left: -1.25rem;
+    padding-left: 1.25rem;
+    overflow: scroll;
+    grid-row-gap: 1rem;
+    grid-column-gap: 0.8rem;
+
+    .overline {
+      flex: none;
+    }
+  }
 }
 
 .shelf-buttons {
   grid-column-gap: 16px;
-  grid-row-gap: 16px;
+  grid-row-gap: 0.5rem;
   flex-flow: wrap;
   display: flex;
+
+  @media screen and (max-width: 570px) {
+    flex-flow: row;
+    grid-column-gap: 0.625rem;
+
+    .btn {
+      flex: none;
+    }
+  }
 }
 
 select {

@@ -1,0 +1,61 @@
+// UPDATE PROFILE FORM STYLES
+.update-profile-form {
+  padding: 1.5rem 0;
+  max-width: 700px;
+}
+
+.textarea-field {
+  padding: 1rem 1.5rem;
+  font-family: "DM Sans", Helvetica, sans-serif;
+}
+
+textarea.form-control {
+  min-height: 8.75rem;
+  max-height: 8.75rem;
+  padding: 1rem 1.5rem;
+}
+
+.update-success {
+  padding: 1rem 1.5rem;
+  background-color: #dfdcce;
+  border-radius: 1.5rem;
+}
+
+// SEARCH FORM
+.search-form {
+  background-color: #dfdcce;
+  border-bottom-right-radius: 35px;
+  border-bottom-left-radius: 35px;
+  padding: 1.5rem;
+}
+
+.form {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  display: flex;
+}
+
+.form-wrap {
+  width: 100%;
+  display: flex;
+}
+
+.input-field {
+  background-color: #f9f7f1;
+  border: 0 solid #000;
+  border-radius: 20px;
+  height: 40px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  flex: 1;
+  font-family: "DM Sans", sans-serif;
+}
+
+.submit-btn {
+  color: #381519;
+  background-color: #f9f7f1;
+  border: 1px solid #381519;
+  border-radius: 20px;
+  width: 11.5rem;
+  height: 40px;
+}

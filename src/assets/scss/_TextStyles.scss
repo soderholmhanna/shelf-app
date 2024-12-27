@@ -22,30 +22,43 @@ h1 {
   font-size: 48px;
   font-weight: 700;
   line-height: 44px;
+  letter-spacing: 0.02rem;
 }
 
 h2 {
   font-size: 40px;
   font-weight: 700;
   line-height: 36px;
+  letter-spacing: 0.02rem;
 }
 
 h3 {
   font-size: 24px;
+  letter-spacing: 0.02rem;
+}
+
+h4 {
+  line-height: 1.1;
 }
 
 p {
-  font-family: Georgia, Times, Times New Roman, serif;
+  font-family: "Noto Serif", Georgia, Times, serif;
   font-size: 12px;
+  letter-spacing: 0;
 }
 
 a {
   text-decoration: none;
   transition: 150ms ease-in-out;
+  letter-spacing: 0.02rem;
 }
 
 a:hover {
   opacity: 70%;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .p-large {
@@ -60,8 +73,8 @@ a:hover {
 
 .overline {
   text-transform: uppercase;
-  font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
+  font-family: "Coolvetica", Helvetica, sans-serif;
 }
 
 .text-burgundy-50 {
@@ -74,4 +87,13 @@ a:hover {
 
 .text-orange {
   color: #ff432a;
+}
+
+@media screen and (max-width: 570px) {
+  h1 {
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
 }
