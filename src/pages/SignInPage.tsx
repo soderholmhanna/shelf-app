@@ -1,6 +1,3 @@
-// import Button from "../components/Button";
-// import ArrowUpRight from "../assets/icons/Arrow up-right.svg";
-// import ArrowRight from "../assets/icons/Arrow right.svg";
 import LandingPageNavigation from "../components/navigation/LandingPageNavigation";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";

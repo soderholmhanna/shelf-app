@@ -10,8 +10,6 @@ const Navigation = () => {
   const { currentUser } = useAuth();
   const [isDesktop, setIsDesktop] = useState(() => window.innerWidth > 991);
 
-  console.log({ isDesktop });
-
   const userId = currentUser?.uid;
 
   useEffect(() => {

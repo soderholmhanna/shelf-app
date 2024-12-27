@@ -18,14 +18,10 @@ const ProfilePage = () => {
   const { data: profileData } = useGetUserDoc(uid);
   const [isFollowing, setIsFollowing] = useState(false);
 
-  console.log({ isFollowing });
-
   const userData = profileData?.[0];
   const currentUserID = currentUserData?.[0]._id;
 
   const isMyProfile = currentUser?.uid === uid;
-
-  console.log({ userData });
 
   const handleFollow = async () => {
     if (!currentUser || !uid || !currentUserID) return;
@@ -35,7 +31,6 @@ const ProfilePage = () => {
       await updateDoc(userDocRef, {
         following: arrayUnion(uid),
       });
-      console.log(`Now following user with uid: ${uid}`);
     } catch (error) {
       console.error("Error following user:", error);
     }
@@ -50,7 +45,6 @@ const ProfilePage = () => {
         following: arrayRemove(uid),
       });
       setIsFollowing(false);
-      console.log(`Unfollowed user with uid: ${uid}`);
     } catch (error) {
       console.error("Error unfollowing user:", error);
     }

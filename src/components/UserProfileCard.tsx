@@ -22,8 +22,6 @@ const UserProfileCard: React.FC<UserProfileCardProps> = ({ user, uid, currentUse
 
   const cardClass = `user-profile-card ${type === "Search result" ? " bg-off-white" : ""}`;
 
-  console.log({ user });
-
   return (
     <div className={cardClass}>
       <div className="user-profile-img-wrap">

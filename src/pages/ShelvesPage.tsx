@@ -93,13 +93,3 @@ const ShelvesPage = () => {
 };
 
 export default ShelvesPage;
-
-// const fetchBooks = async () => {
-//   const currentlyReadingBooks = await getShelf(profileBooks.currentlyReading);
-//   const wantToReadBooks = await getShelf(profileBooks.wantToRead);
-//   const readBooks = await getShelf(profileBooks.read);
-
-//   setCurrentlyReading(currentlyReadingBooks);
-//   setWantToRead(wantToReadBooks);
-//   setRead(readBooks);
-// };
