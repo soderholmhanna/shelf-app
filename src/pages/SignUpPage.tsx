@@ -77,7 +77,7 @@ const SignupPage = () => {
       <div className="homepage-half bg-burgundy">
         <LandingPageNavigation />
         <div className="homepage-text-wrap">
-          <h1 className="text-orange">SIGN UP</h1>
+          <h1 className="text-orange mb-4">SIGN UP</h1>
           <Form onSubmit={handleSubmit(onSignup)} className="mb-3 text-white">
             <Form.Group controlId="firstName">
               <Form.Label>First name</Form.Label>
@@ -165,7 +165,7 @@ const SignupPage = () => {
               {errors.confirmPassword && <p>{errors.confirmPassword.message || "Invalid value"}</p>}
             </Form.Group>
 
-            <Button disabled={isSubmitting} type="submit" className="btn-orange">
+            <Button disabled={isSubmitting} type="submit" className="btn-orange mt-4">
               {isSubmitting ? "Creating account..." : "Create Account"}
             </Button>
           </Form>

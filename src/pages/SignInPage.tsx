@@ -49,7 +49,7 @@ const SignInPage = () => {
       <div className="homepage-half bg-burgundy">
         <LandingPageNavigation />
         <div className="homepage-text-wrap">
-          <h2 className="text-orange">SIGN IN</h2>
+          <h1 className="text-orange mb-4">SIGN IN</h1>
           <Form onSubmit={handleSubmit(onLogin)} className="text-white">
             <Form.Group controlId="email" className="mb-3">
               <Form.Label>Email</Form.Label>
@@ -77,7 +77,7 @@ const SignInPage = () => {
               {errors.password && <p>{errors.password.message || "Invalid value"}</p>}
             </Form.Group>
 
-            <Button disabled={isSubmitting} type="submit" className="btn-orange">
+            <Button disabled={isSubmitting} type="submit" className="btn-orange mt-4">
               {isSubmitting ? "Logging in..." : "Log in"}
             </Button>
             {isError && (

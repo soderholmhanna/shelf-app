@@ -81,8 +81,8 @@ const SearchPage = () => {
               <h1>Search for books</h1>
             </div>
             <div className="search-form">
-              <Form onSubmit={handleSubmit} className="form-wrap">
-                <InputGroup className="form">
+              <Form onSubmit={handleSubmit} className="form-wrap ">
+                <InputGroup className="form search-input-wrap">
                   <Form.Control
                     type="text"
                     placeholder="Search for books, authors or categories..."

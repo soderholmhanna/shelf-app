@@ -12,6 +12,11 @@ button,
   padding: 0 16px;
 }
 
+button:hover,
+.btn:hover {
+  opacity: 60%;
+}
+
 .btn-white {
   background: #f2efe2;
 }

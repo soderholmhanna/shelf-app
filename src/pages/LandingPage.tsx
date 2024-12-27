@@ -37,7 +37,7 @@ const LandingPage = () => {
             </div>
           ) : (
             <div>
-              <h3>You're already logged in!</h3>
+              <p className="overline text-white mt-4 mb-2">You're already logged in!</p>
               <CustomButton
                 textValue="Home page"
                 hasIcon={true}
